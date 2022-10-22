@@ -121,12 +121,22 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 119
   m_GroundCheck: {fileID: 8983924770449602511}
+  gravityScale: 2
   runSpeed: 400
   airRunSpeed: 300
   m_AmountOfTimeInGhostForm: 2
   m_TimeLeftInGhostForm: 0
-  ghostRunSpeed: 200
-  m_GhostJumpForce: 200
+  currentGhostState: 0
+  floatGhostRunSpeed: 200
+  m_FloatGhostJumpForce: 100
+  floatGhostGravity: 1
+  speedGhostRunSpeed: 500
+  m_SpeedGhostJumpForce: 400
+  speedGhostGravity: 2
+  heavyGhostRunSpeed: 200
+  m_HeavyGhostJumpForce: 200
+  heavyGhostGravity: 1
+  deadBodySpritePrefab: {fileID: 3229816144785757416, guid: 8edee2b41e751a5499174e4d4d75a96b, type: 3}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
