@@ -21,8 +21,8 @@ public class DaggerScript : MonoBehaviour
         //Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
         if (col.TryGetComponent(out CharacterController2D playerRef))
         {
-            playerRef.GoGhost();
             playerRef.currentGhostState = CharacterController2D.GhostState.Speed;
+            playerRef.GoGhost();
         }
     }
 }
