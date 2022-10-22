@@ -13,6 +13,7 @@ public class CharacterController2D : MonoBehaviour
     private bool m_Grounded;            // Whether or not the player is grounded.
                                         //const float k_CeilingRadius = .2f; // Radius of the overlap circle to determine if the player can stand up
     private Rigidbody2D m_Rigidbody2D;
+    public float gravityScale = 2.0f; // use this instead of changing the rigidbody gravity
     private bool m_FacingRight = true;  // For determining which way the player is currently facing.
     private Vector3 m_Velocity = Vector3.zero;
     public float runSpeed = 400f;
@@ -24,6 +25,10 @@ public class CharacterController2D : MonoBehaviour
     private bool m_isInGhostForm = false;
     public float ghostRunSpeed = 200f;
     [SerializeField] private float m_GhostJumpForce = 100f;                          // Amount of force added when the player jumps.
+    public float ghostGravity = 1.0f;
+
+    // rendering stuff
+    private SpriteRenderer sprite;
 
     [Header("Events")]
     [Space]
@@ -37,9 +42,15 @@ public class CharacterController2D : MonoBehaviour
     private void Awake()
     {
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
+        m_Rigidbody2D.gravityScale = gravityScale;
 
         if (OnLandEvent == null)
             OnLandEvent = new UnityEvent();
+    }
+
+    void Start()
+    {
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -68,6 +79,9 @@ public class CharacterController2D : MonoBehaviour
             if (m_TimeLeftInGhostForm <= 0)
             {
                 m_isInGhostForm = false;
+                // Change the 'color' property of the 'Sprite Renderer' back to human
+                sprite.color = new Color(255, 255, 255, 1);
+                m_Rigidbody2D.gravityScale = gravityScale;
                 Debug.Log("Back to Human.");
             }
         }
@@ -82,6 +96,10 @@ public class CharacterController2D : MonoBehaviour
 
             m_TimeLeftInGhostForm = m_AmountOfTimeInGhostForm;
             m_isInGhostForm = true;
+
+            // Change the 'color' property of the 'Sprite Renderer' to Ghost
+            sprite.color = new Color(0, 0, 0, 1);
+            m_Rigidbody2D.gravityScale = ghostGravity;
         }
     }
 
