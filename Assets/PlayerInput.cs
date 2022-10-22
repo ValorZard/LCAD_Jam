@@ -15,21 +15,24 @@ public class PlayerInput : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-
+		// Move our character
 		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
 		if (Input.GetButtonDown("Jump"))
 		{
 			jump = true;
 		}
+		else
+		{
+			jump = false;
+		}
 
-
+		controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
+		// jump = false;
 	}
 
 	void FixedUpdate()
 	{
-		// Move our character
-		controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
-		jump = false;
+
 	}
 }
