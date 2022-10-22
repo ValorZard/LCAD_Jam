@@ -115,6 +115,7 @@ public class CharacterController2D : MonoBehaviour
                 if (currentGhostState != GhostState.Heavy)
                 {
                     GetComponent<Transform>().position = rewindPosition;
+                    Debug.Log("Rewind Time.");
                 }
                 deadBodySprite.gameObject.SetActive(false);
             }
@@ -149,9 +150,13 @@ public class CharacterController2D : MonoBehaviour
             }
 
             // rewind time + sprite
-            rewindPosition = GetComponent<Transform>().position;
-            deadBodySprite.GetComponent<Transform>().position = GetComponent<Transform>().position;
-            deadBodySprite.gameObject.SetActive(true);
+            if (currentGhostState != GhostState.Heavy)
+            {
+                rewindPosition = GetComponent<Transform>().position;
+                deadBodySprite.GetComponent<Transform>().position = GetComponent<Transform>().position;
+                deadBodySprite.gameObject.SetActive(true);
+                Debug.Log("Spawn Dead Body");
+            }
         }
     }
 
