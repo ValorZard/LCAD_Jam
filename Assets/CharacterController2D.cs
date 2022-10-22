@@ -27,6 +27,11 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private float m_GhostJumpForce = 100f;                          // Amount of force added when the player jumps.
     public float ghostGravity = 1.0f;
 
+    private Vector3 rewindPosition; // position where the ghost died
+
+    public SpriteRenderer deadBodySpritePrefab;
+    private SpriteRenderer deadBodySprite;
+
     // rendering stuff
     private SpriteRenderer sprite;
 
@@ -51,6 +56,8 @@ public class CharacterController2D : MonoBehaviour
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
+        deadBodySprite = Instantiate<SpriteRenderer>(deadBodySpritePrefab);
+        deadBodySprite.gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -83,6 +90,10 @@ public class CharacterController2D : MonoBehaviour
                 sprite.color = new Color(255, 255, 255, 1);
                 m_Rigidbody2D.gravityScale = gravityScale;
                 Debug.Log("Back to Human.");
+
+                // rewind time + sprite
+                GetComponent<Transform>().position = rewindPosition;
+                deadBodySprite.gameObject.SetActive(false);
             }
         }
     }
@@ -100,6 +111,11 @@ public class CharacterController2D : MonoBehaviour
             // Change the 'color' property of the 'Sprite Renderer' to Ghost
             sprite.color = new Color(0, 0, 0, 1);
             m_Rigidbody2D.gravityScale = ghostGravity;
+
+            // rewind time + sprite
+            rewindPosition = GetComponent<Transform>().position;
+            deadBodySprite.GetComponent<Transform>().position = GetComponent<Transform>().position;
+            deadBodySprite.gameObject.SetActive(true);
         }
     }
 
