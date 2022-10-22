@@ -24,7 +24,7 @@ public class CharacterController2D : MonoBehaviour
     // ghost variables
     public float m_AmountOfTimeInGhostForm = 2.0f; // in seconds
     public float m_TimeLeftInGhostForm = 0.0f;
-    private bool m_isInGhostForm = false;
+    public bool m_isInGhostForm = false;
     public enum GhostState
     {
         Float,
