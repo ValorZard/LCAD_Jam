@@ -734,6 +734,18 @@ PrefabInstance:
       propertyPath: deadBodySprite
       value: 
       objectReference: {fileID: 3229816144785757416, guid: 8edee2b41e751a5499174e4d4d75a96b, type: 3}
+    - target: {fileID: 8983924770352106334, guid: 87d94370c3082bb45a806d245e2ad495, type: 3}
+      propertyPath: currentGhostState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8983924770352106334, guid: 87d94370c3082bb45a806d245e2ad495, type: 3}
+      propertyPath: deadBodySpritePrefab
+      value: 
+      objectReference: {fileID: 3229816144785757416, guid: 8edee2b41e751a5499174e4d4d75a96b, type: 3}
+    - target: {fileID: 8983924770352106334, guid: 87d94370c3082bb45a806d245e2ad495, type: 3}
+      propertyPath: m_HeavyGhostJumpForce
+      value: 400
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87d94370c3082bb45a806d245e2ad495, type: 3}
 --- !u!1 &789229457
