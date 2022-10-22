@@ -49,6 +49,11 @@ public class CharacterController2D : MonoBehaviour
 
     private Vector3 rewindPosition; // position where the ghost died
 
+    // jank way to ignore physics objects that are either human or ghost
+    private Vector3 lastPosition;
+    private Vector3 lastVelocity;
+    private float lastAngularVelocity;
+
     public SpriteRenderer deadBodySpritePrefab;
     private SpriteRenderer deadBodySprite;
 
@@ -99,7 +104,7 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 
-        // going ghost
+        // going ghost, rewind back to original body
         if (m_isInGhostForm)
         {
             m_TimeLeftInGhostForm -= Time.deltaTime;
@@ -118,8 +123,14 @@ public class CharacterController2D : MonoBehaviour
                     Debug.Log("Rewind Time.");
                 }
                 deadBodySprite.gameObject.SetActive(false);
+
+                m_Rigidbody2D.velocity = Vector2.zero;
             }
         }
+
+        lastPosition = transform.position;
+        lastVelocity = m_Rigidbody2D.velocity;
+        lastAngularVelocity = m_Rigidbody2D.angularVelocity;
     }
 
     public void GoGhost()
@@ -157,6 +168,8 @@ public class CharacterController2D : MonoBehaviour
                 deadBodySprite.gameObject.SetActive(true);
                 Debug.Log("Spawn Dead Body");
             }
+
+            // collision stuff
         }
     }
 
@@ -274,6 +287,16 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
+    public void OnCollision2DEnter(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Human"))
+        {
+            transform.position = lastPosition;
+            m_Rigidbody2D.velocity = lastVelocity;
+            m_Rigidbody2D.angularVelocity = lastAngularVelocity;
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
+        }
+    }
 
     private void Flip()
     {

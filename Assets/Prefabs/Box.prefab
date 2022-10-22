@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1862476474604218434}
   - component: {fileID: 1862476474604218435}
   - component: {fileID: 1862476474604218432}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Box
-  m_TagString: Untagged
+  m_TagString: Human
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

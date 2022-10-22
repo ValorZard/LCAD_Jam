@@ -670,6 +670,10 @@ PrefabInstance:
       propertyPath: m_HeavyGhostJumpForce
       value: 400
       objectReference: {fileID: 0}
+    - target: {fileID: 8983924770352106334, guid: 87d94370c3082bb45a806d245e2ad495, type: 3}
+      propertyPath: m_AmountOfTimeInGhostForm
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87d94370c3082bb45a806d245e2ad495, type: 3}
 --- !u!1 &789229457
@@ -780,6 +784,10 @@ PrefabInstance:
     - target: {fileID: 1862476474604218433, guid: 02dbd1ba11ae3b948ab8b84f7feacca5, type: 3}
       propertyPath: m_Name
       value: Box
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862476474604218433, guid: 02dbd1ba11ae3b948ab8b84f7feacca5, type: 3}
+      propertyPath: m_TagString
+      value: Human
       objectReference: {fileID: 0}
     - target: {fileID: 1862476474604218437, guid: 02dbd1ba11ae3b948ab8b84f7feacca5, type: 3}
       propertyPath: m_RootOrder
