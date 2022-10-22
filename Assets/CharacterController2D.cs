@@ -19,6 +19,8 @@ public class CharacterController2D : MonoBehaviour
     public float runSpeed = 400f;
     public float airRunSpeed = 300f;
 
+    public float upVelocityLimit = 100f;
+
     // ghost variables
     public float m_AmountOfTimeInGhostForm = 2.0f; // in seconds
     public float m_TimeLeftInGhostForm = 0.0f;
@@ -126,6 +128,12 @@ public class CharacterController2D : MonoBehaviour
 
                 m_Rigidbody2D.velocity = Vector2.zero;
             }
+        }
+
+        // set limiter for up velocity
+        if(m_Rigidbody2D.velocity.y > upVelocityLimit)
+        {
+            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, upVelocityLimit);
         }
 
         lastPosition = transform.position;
