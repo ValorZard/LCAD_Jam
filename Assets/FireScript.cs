@@ -21,7 +21,7 @@ public class FireScript : MonoBehaviour
         //Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
         if (col.TryGetComponent(out CharacterController2D playerRef))
         {
-            playerRef.currentGhostState = CharacterController2D.GhostState.Float;
+            playerRef.currentGhostState = CharacterController2D.GhostState.Leap;
             playerRef.GoGhost();
         }
     }

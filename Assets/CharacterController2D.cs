@@ -33,18 +33,18 @@ public class CharacterController2D : MonoBehaviour
     public float shiftAmountWhenHitTrigger = 0.5f;
     public enum GhostState
     {
-        Float,
+        Leap,
         Speed,
        //Heavy, // can't rewind
     }
 
-    public GhostState currentGhostState = GhostState.Float;
+    public GhostState currentGhostState = GhostState.Leap;
 
     // float state
-    public float floatGhostRunSpeed = 200f;
-    [SerializeField] private float m_FloatGhostJumpForce = 100f;                          // Amount of force added when the player jumps.
-    public float floatGhostGravity = 1.0f;
-    public Color floatGhostColor = new Color(0, 0, 100, 1);
+    public float leapGhostRunSpeed = 200f;
+    [SerializeField] private float m_LeapGhostJumpForce = 100f;                          // Amount of force added when the player jumps.
+    public float leapGhostGravity = 1.0f;
+    public Color leapGhostColor = new Color(0, 0, 100, 1);
 
     // Speed state
     public float speedGhostRunSpeed = 500f;
@@ -92,8 +92,8 @@ public class CharacterController2D : MonoBehaviour
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
-        deadBodySprite = Instantiate<SpriteRenderer>(deadBodySpritePrefab);
-        deadBodySprite.gameObject.SetActive(false);
+        //deadBodySprite = Instantiate<SpriteRenderer>(deadBodySpritePrefab);
+        //deadBodySprite.gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -166,9 +166,9 @@ public class CharacterController2D : MonoBehaviour
             // state stuff
             switch (currentGhostState)
             {
-                case GhostState.Float:
-                    m_Rigidbody2D.gravityScale = floatGhostGravity;
-                    sprite.color = floatGhostColor;
+                case GhostState.Leap:
+                    m_Rigidbody2D.gravityScale = leapGhostGravity;
+                    sprite.color = leapGhostColor;
                     break;
                 case GhostState.Speed:
                     m_Rigidbody2D.gravityScale = speedGhostGravity;
@@ -219,9 +219,9 @@ public class CharacterController2D : MonoBehaviour
             float m_GhostJumpForce = m_JumpForce;
 
             switch (currentGhostState) {
-                case GhostState.Float:
-                    ghostRunSpeed = floatGhostRunSpeed;
-                    m_GhostJumpForce = m_FloatGhostJumpForce;
+                case GhostState.Leap:
+                    ghostRunSpeed = leapGhostRunSpeed;
+                    m_GhostJumpForce = m_LeapGhostJumpForce;
                     break;
                 case GhostState.Speed:
                     ghostRunSpeed = speedGhostRunSpeed;
@@ -258,8 +258,11 @@ public class CharacterController2D : MonoBehaviour
             {
                 switch (currentGhostState)
                 {
-                    case GhostState.Float:
-                        m_Rigidbody2D.AddForce(new Vector2(0f, m_GhostJumpForce));
+                    case GhostState.Leap:
+                        if (m_Grounded)
+                        {
+                            m_Rigidbody2D.AddForce(new Vector2(0f, m_GhostJumpForce));
+                        }
                         break;
                     case GhostState.Speed:
                         if(m_Grounded)
