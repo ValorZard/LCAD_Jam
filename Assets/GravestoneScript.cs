@@ -18,11 +18,15 @@ public class GravestoneScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        //Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
+        GameObject player = GameObject.Find("Player");
+
         if (col.TryGetComponent(out CharacterController2D playerRef))
         {
-            //playerRef.m_TimeLeftInGhostForm = 0.0f;
-            playerRef.TurnBackIntoHuman();
+            player.GetComponent<CharacterController2D>().TurnBackIntoHuman();
+        }
+        else
+        {
+            player.GetComponent<CharacterController2D>().RewindBackToDeadBody();
         }
     }
 }

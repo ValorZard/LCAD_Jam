@@ -38,10 +38,6 @@ public class ButtonScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        //Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
-        if (col.TryGetComponent(out CharacterController2D playerRef))
-        {
-            transform.GetChild(0).gameObject.SetActive(false);
-        }
+       transform.GetChild(0).gameObject.SetActive(false);
     }
 }
