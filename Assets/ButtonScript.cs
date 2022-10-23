@@ -39,5 +39,6 @@ public class ButtonScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
        transform.GetChild(0).gameObject.SetActive(false);
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 }
