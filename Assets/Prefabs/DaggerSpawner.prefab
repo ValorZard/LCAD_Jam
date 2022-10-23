@@ -46,5 +46,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   daggerTemplate: {fileID: 5249579807245986247, guid: 01ae32040a089ed49bc498ff256ac5c8, type: 3}
   m_TimeForDaggerSpawn: 2
-  m_TimeLeftForNextSpawn: 6
+  m_TimeLeftForNextSpawn: 2
   velocity: {x: 0, y: 0, z: 0}
