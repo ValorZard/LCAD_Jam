@@ -26,7 +26,7 @@ public class CharacterController2D : MonoBehaviour
     public float m_TimeLeftInGhostForm = 0.0f;
     public bool m_isInGhostForm = false;
 
-    public float shift_amount_when_hit_trigger = 0.5f;
+    public float shiftAmountWhenHitTrigger = 0.5f;
     public enum GhostState
     {
         Float,
