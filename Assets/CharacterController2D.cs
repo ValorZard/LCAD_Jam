@@ -204,6 +204,7 @@ public class CharacterController2D : MonoBehaviour
         sprite.color = humanColor;
 
         //remove dead body cuz your human again
+        deadBodySprite.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         deadBodySprite.gameObject.SetActive(false);
     }
 
