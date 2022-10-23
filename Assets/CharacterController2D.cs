@@ -25,6 +25,8 @@ public class CharacterController2D : MonoBehaviour
     public float m_AmountOfTimeInGhostForm = 2.0f; // in seconds
     public float m_TimeLeftInGhostForm = 0.0f;
     public bool m_isInGhostForm = false;
+
+    public float shift_amount_when_hit_trigger = 0.5f;
     public enum GhostState
     {
         Float,
@@ -174,10 +176,17 @@ public class CharacterController2D : MonoBehaviour
                 deadBodySprite.gameObject.SetActive(true);
                 rewindPosition = GetComponent<Transform>().position;
                 deadBodySprite.GetComponent<Transform>().position = rewindPosition;
+                // collision stuff (shift the player by a bit)
+                if (m_FacingRight)
+                {
+                    rewindPosition = new Vector2(rewindPosition.x - shift_amount_when_hit_trigger, rewindPosition.y);
+                }
+                else
+                {
+                    rewindPosition = new Vector2(rewindPosition.x + shift_amount_when_hit_trigger, rewindPosition.y);
+                }
                 Debug.Log("Spawn Dead Body");
             }
-
-            // collision stuff
         }
     }
 

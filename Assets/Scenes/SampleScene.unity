@@ -674,6 +674,10 @@ PrefabInstance:
       propertyPath: m_AmountOfTimeInGhostForm
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8983924770352106334, guid: 87d94370c3082bb45a806d245e2ad495, type: 3}
+      propertyPath: shift_amount_when_hit_trigger
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87d94370c3082bb45a806d245e2ad495, type: 3}
 --- !u!1 &789229457
