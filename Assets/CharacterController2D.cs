@@ -23,6 +23,7 @@ public class CharacterController2D : MonoBehaviour
 
     public float upVelocityLimit = 100f;
 
+    public Sprite humanSprite;
     public Color humanColor =  new Color(255, 255, 255, 1);
 
     // ghost variables
@@ -39,6 +40,8 @@ public class CharacterController2D : MonoBehaviour
     }
 
     public GhostState currentGhostState = GhostState.Leap;
+
+    public Sprite ghostSprite;
 
     // float state
     public float leapGhostRunSpeed = 200f;
@@ -92,12 +95,16 @@ public class CharacterController2D : MonoBehaviour
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
+        sprite.sprite = humanSprite;
+        sprite.drawMode = SpriteDrawMode.Sliced;
+        //sprite.size = new Vector2(0.1f, 0.1f);
         deadBodySprite = Instantiate<SpriteRenderer>(deadBodySpritePrefab);
         deadBodySprite.gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
     {
+        
         bool wasGrounded = m_Grounded;
         m_Grounded = false;
 
@@ -162,6 +169,7 @@ public class CharacterController2D : MonoBehaviour
 
             // Change the 'color' property of the 'Sprite Renderer' to Ghost
             //sprite.color = new Color(0, 0, 0, 1);
+            sprite.sprite = ghostSprite;
 
             // state stuff
             switch (currentGhostState)
@@ -202,6 +210,7 @@ public class CharacterController2D : MonoBehaviour
     {
         m_isInGhostForm = false;
         sprite.color = humanColor;
+        sprite.sprite = humanSprite;
 
         //remove dead body cuz your human again
         deadBodySprite.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
