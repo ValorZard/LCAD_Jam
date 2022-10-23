@@ -206,20 +206,23 @@ public class CharacterController2D : MonoBehaviour
 
     public void RewindBackToDeadBody()
     {
-        m_isInGhostForm = false;
-        // Change the 'color' property of the 'Sprite Renderer' back to human
-        sprite.color = new Color(255, 255, 255, 1);
-        m_Rigidbody2D.gravityScale = gravityScale;
-        Debug.Log("Back to Human.");
+        if (m_isInGhostForm)
+        {
+            m_isInGhostForm = false;
+            // Change the 'color' property of the 'Sprite Renderer' back to human
+            sprite.color = new Color(255, 255, 255, 1);
+            m_Rigidbody2D.gravityScale = gravityScale;
+            Debug.Log("Back to Human.");
 
-        // rewind time + sprite
-        GetComponent<Transform>().position = rewindPosition;
-        Debug.Log("Rewind Time.");
-        deadBodySprite.gameObject.SetActive(false);
+            // rewind time + sprite
+            GetComponent<Transform>().position = rewindPosition;
+            Debug.Log("Rewind Time.");
+            deadBodySprite.gameObject.SetActive(false);
 
-        m_Rigidbody2D.velocity = Vector2.zero;
+            m_Rigidbody2D.velocity = Vector2.zero;
 
-        TurnBackIntoHuman();
+            TurnBackIntoHuman();
+        }
     }
 
     public void Move(float move, bool jump)
