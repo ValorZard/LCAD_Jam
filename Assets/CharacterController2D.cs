@@ -179,11 +179,11 @@ public class CharacterController2D : MonoBehaviour
                 // collision stuff (shift the player by a bit)
                 if (m_FacingRight)
                 {
-                    rewindPosition = new Vector2(rewindPosition.x - shift_amount_when_hit_trigger, rewindPosition.y);
+                    rewindPosition = new Vector2(rewindPosition.x - shiftAmountWhenHitTrigger, rewindPosition.y);
                 }
                 else
                 {
-                    rewindPosition = new Vector2(rewindPosition.x + shift_amount_when_hit_trigger, rewindPosition.y);
+                    rewindPosition = new Vector2(rewindPosition.x + shiftAmountWhenHitTrigger, rewindPosition.y);
                 }
                 Debug.Log("Spawn Dead Body");
             }
