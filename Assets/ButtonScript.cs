@@ -6,7 +6,6 @@ public class ButtonScript : MonoBehaviour
 {
     public Color c1 = Color.yellow;
     public Color c2 = Color.red;
-    public int lengthOfLineRenderer = 20;
 
     void Start()
     {
