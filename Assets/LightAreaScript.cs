@@ -21,7 +21,8 @@ public class LightAreaScript : MonoBehaviour
         //Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
         if (col.TryGetComponent(out CharacterController2D playerRef))
         {
-            playerRef.m_TimeLeftInGhostForm = 0.0f;
+            //playerRef.m_TimeLeftInGhostForm = 0.0f;
+            playerRef.TurnBackIntoHuman();
         }
     }
 }

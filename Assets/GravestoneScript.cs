@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpikeScript : MonoBehaviour
+public class GravestoneScript : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -19,10 +19,10 @@ public class SpikeScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         //Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
-        if(col.TryGetComponent(out CharacterController2D playerRef))
+        if (col.TryGetComponent(out CharacterController2D playerRef))
         {
-            //playerRef.currentGhostState = CharacterController2D.GhostState.Heavy;
-            playerRef.GoGhost();
+            //playerRef.m_TimeLeftInGhostForm = 0.0f;
+            playerRef.TurnBackIntoHuman();
         }
     }
 }

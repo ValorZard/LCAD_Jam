@@ -17,6 +17,6 @@ public class PlayerUI : MonoBehaviour
     void Update()
     {
         // clean up the number by rounding it to 3 decimal places
-        ghostTimerText.text = (Mathf.Round(playerReference.m_TimeLeftInGhostForm * 1000) / 1000).ToString();
+        //ghostTimerText.text = (Mathf.Round(playerReference.m_TimeLeftInGhostForm * 1000) / 1000).ToString();
     }
 }

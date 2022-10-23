@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,6 +8,7 @@ public class CharacterController2D : MonoBehaviour
     [Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  // How much to smooth out the movement
     [SerializeField] private bool m_AirControl = true;                         // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
+
     [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
 
     const float k_GroundedRadius = .2f; // Radius of the overlap circle to determine if grounded
@@ -21,9 +23,11 @@ public class CharacterController2D : MonoBehaviour
 
     public float upVelocityLimit = 100f;
 
+    public Color humanColor =  new Color(255, 255, 255, 1);
+
     // ghost variables
-    public float m_AmountOfTimeInGhostForm = 2.0f; // in seconds
-    public float m_TimeLeftInGhostForm = 0.0f;
+    //public float m_AmountOfTimeInGhostForm = 2.0f; // in seconds
+    //public float m_TimeLeftInGhostForm = 0.0f;
     public bool m_isInGhostForm = false;
 
     public float shiftAmountWhenHitTrigger = 0.5f;
@@ -31,7 +35,7 @@ public class CharacterController2D : MonoBehaviour
     {
         Float,
         Speed,
-        Heavy, // can't rewind
+       //Heavy, // can't rewind
     }
 
     public GhostState currentGhostState = GhostState.Float;
@@ -40,18 +44,21 @@ public class CharacterController2D : MonoBehaviour
     public float floatGhostRunSpeed = 200f;
     [SerializeField] private float m_FloatGhostJumpForce = 100f;                          // Amount of force added when the player jumps.
     public float floatGhostGravity = 1.0f;
+    public Color floatGhostColor = new Color(0, 0, 100, 1);
 
     // Speed state
     public float speedGhostRunSpeed = 500f;
     [SerializeField] private float m_SpeedGhostJumpForce = 400f;                          // Amount of force added when the player jumps.
     public float speedGhostGravity = 2.0f;
+    public Color speedGhostColor = new Color(100, 0, 0, 1);
 
     // Heavy state
-    public float heavyGhostRunSpeed = 200f;
-    [SerializeField] private float m_HeavyGhostJumpForce = 200f;                          // Amount of force added when the player jumps.
-    public float heavyGhostGravity = 1.0f;
+    //public float heavyGhostRunSpeed = 200f;
+    //[SerializeField] private float m_HeavyGhostJumpForce = 200f;                          // Amount of force added when the player jumps.
+    //public float heavyGhostGravity = 1.0f;
 
-    private Vector3 rewindPosition; // position where the ghost died
+
+    //private Vector3 rewindPosition; // position where the ghost died
 
     // jank way to ignore physics objects that are either human or ghost
     private Vector3 lastPosition;
@@ -108,6 +115,7 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 
+        /*
         // going ghost, rewind back to original body
         if (m_isInGhostForm)
         {
@@ -131,6 +139,7 @@ public class CharacterController2D : MonoBehaviour
                 m_Rigidbody2D.velocity = Vector2.zero;
             }
         }
+        */
 
         // set limiter for up velocity
         m_Rigidbody2D.velocity = new Vector2(Mathf.Clamp(m_Rigidbody2D.velocity.x, -upVelocityLimit, upVelocityLimit), m_Rigidbody2D.velocity.y);
@@ -148,26 +157,29 @@ public class CharacterController2D : MonoBehaviour
         {
             Debug.Log("GOING GHOST");
 
-            m_TimeLeftInGhostForm = m_AmountOfTimeInGhostForm;
+            //m_TimeLeftInGhostForm = m_AmountOfTimeInGhostForm;
             m_isInGhostForm = true;
 
             // Change the 'color' property of the 'Sprite Renderer' to Ghost
-            sprite.color = new Color(0, 0, 0, 1);
+            //sprite.color = new Color(0, 0, 0, 1);
 
             // state stuff
             switch (currentGhostState)
             {
                 case GhostState.Float:
                     m_Rigidbody2D.gravityScale = floatGhostGravity;
+                    sprite.color = floatGhostColor;
                     break;
                 case GhostState.Speed:
                     m_Rigidbody2D.gravityScale = speedGhostGravity;
+                    sprite.color = speedGhostColor;
                     break;
-                case GhostState.Heavy:
-                    m_Rigidbody2D.gravityScale = heavyGhostGravity;
-                    break;
+                //case GhostState.Heavy:
+                    //m_Rigidbody2D.gravityScale = heavyGhostGravity;
+                    //break;
             }
 
+            /*
             // rewind time + sprite
             rewindPosition = GetComponent<Transform>().position;
             // collision stuff (shift the player by a bit)
@@ -186,7 +198,14 @@ public class CharacterController2D : MonoBehaviour
                 deadBodySprite.GetComponent<Transform>().position = rewindPosition;
                 Debug.Log("Spawn Dead Body");
             }
+            */
         }
+    }
+
+    public void TurnBackIntoHuman()
+    {
+        m_isInGhostForm = false;
+        sprite.color = humanColor;
     }
 
     public void Move(float move, bool jump)
@@ -208,10 +227,10 @@ public class CharacterController2D : MonoBehaviour
                     ghostRunSpeed = speedGhostRunSpeed;
                     m_GhostJumpForce = m_SpeedGhostJumpForce;
                     break;
-                case GhostState.Heavy:
-                    ghostRunSpeed = heavyGhostRunSpeed;
-                    m_GhostJumpForce = m_HeavyGhostJumpForce;
-                    break;
+                //case GhostState.Heavy:
+                    //ghostRunSpeed = heavyGhostRunSpeed;
+                    //m_GhostJumpForce = m_HeavyGhostJumpForce;
+                    //break;
             }
 
             Vector3 targetVelocity = new Vector2(move * ghostRunSpeed, m_Rigidbody2D.velocity.y);
@@ -248,12 +267,12 @@ public class CharacterController2D : MonoBehaviour
                             m_Rigidbody2D.AddForce(new Vector2(0f, m_GhostJumpForce));
                         }
                         break;
-                    case GhostState.Heavy:
-                        if (m_Grounded)
-                        {
-                            m_Rigidbody2D.AddForce(new Vector2(0f, m_GhostJumpForce));
-                        }
-                        break;
+                    //case GhostState.Heavy:
+                        //if (m_Grounded)
+                        //{
+                        //    m_Rigidbody2D.AddForce(new Vector2(0f, m_GhostJumpForce));
+                        //}
+                        //break;
                 }
             }
         }
