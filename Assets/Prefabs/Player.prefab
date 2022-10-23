@@ -126,20 +126,18 @@ MonoBehaviour:
   runSpeed: 600
   airRunSpeed: 600
   upVelocityLimit: 150
-  m_AmountOfTimeInGhostForm: 8
-  m_TimeLeftInGhostForm: 0
+  humanColor: {r: 255, g: 255, b: 255, a: 1}
   m_isInGhostForm: 0
   shiftAmountWhenHitTrigger: 0.5
   currentGhostState: 0
-  floatGhostRunSpeed: 600
-  m_FloatGhostJumpForce: 600
-  floatGhostGravity: 3
-  speedGhostRunSpeed: 1000
+  leapGhostRunSpeed: 200
+  m_LeapGhostJumpForce: 100
+  leapGhostGravity: 1
+  leapGhostColor: {r: 0, g: 0, b: 100, a: 1}
+  speedGhostRunSpeed: 1200
   m_SpeedGhostJumpForce: 1000
   speedGhostGravity: 6
-  heavyGhostRunSpeed: 600
-  m_HeavyGhostJumpForce: 600
-  heavyGhostGravity: 1
+  speedGhostColor: {r: 100, g: 0, b: 0, a: 1}
   deadBodySpritePrefab: {fileID: 3229816144785757416, guid: 8edee2b41e751a5499174e4d4d75a96b, type: 3}
   OnLandEvent:
     m_PersistentCalls:
