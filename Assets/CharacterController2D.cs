@@ -133,10 +133,8 @@ public class CharacterController2D : MonoBehaviour
         }
 
         // set limiter for up velocity
-        if(m_Rigidbody2D.velocity.y > upVelocityLimit)
-        {
-            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, upVelocityLimit);
-        }
+        m_Rigidbody2D.velocity = new Vector2(Mathf.Clamp(m_Rigidbody2D.velocity.x, -upVelocityLimit, upVelocityLimit), m_Rigidbody2D.velocity.y);
+        
 
         lastPosition = transform.position;
         lastVelocity = m_Rigidbody2D.velocity;
@@ -175,7 +173,6 @@ public class CharacterController2D : MonoBehaviour
             {
                 deadBodySprite.gameObject.SetActive(true);
                 rewindPosition = GetComponent<Transform>().position;
-                deadBodySprite.GetComponent<Transform>().position = rewindPosition;
                 // collision stuff (shift the player by a bit)
                 if (m_FacingRight)
                 {
@@ -185,6 +182,7 @@ public class CharacterController2D : MonoBehaviour
                 {
                     rewindPosition = new Vector2(rewindPosition.x + shiftAmountWhenHitTrigger, rewindPosition.y);
                 }
+                deadBodySprite.GetComponent<Transform>().position = rewindPosition;
                 Debug.Log("Spawn Dead Body");
             }
         }

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8249486354986289682}
   - component: {fileID: 3229816144785757416}
-  - component: {fileID: 2079598404363379524}
   - component: {fileID: 1276924515195054479}
   m_Layer: 0
   m_Name: DeadBody
@@ -86,18 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2079598404363379524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8304884816607982195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af0dbd93f93fa404e8a2bba467f37722, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1276924515195054479
 BoxCollider2D:
   m_ObjectHideFlags: 0

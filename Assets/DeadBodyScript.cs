@@ -18,7 +18,7 @@ public class DeadBodyScript : MonoBehaviour
         
     }
 
-    
+    /*
     void OnTriggerExit2D(Collider2D col)
     {
         //Debug.Log(col.gameObject.name + " : " + gameObject.name + " : " + Time.time);
@@ -43,6 +43,6 @@ public class DeadBodyScript : MonoBehaviour
             }
         }
     }
-    
+    */
 
 }
