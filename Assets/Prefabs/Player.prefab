@@ -114,27 +114,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c08867da41f5b8e44abb41065297eb15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 400
+  m_JumpForce: 1200
   m_MovementSmoothing: 0.05
   m_AirControl: 1
   m_WhatIsGround:
     serializedVersion: 2
     m_Bits: 119
   m_GroundCheck: {fileID: 8983924770449602511}
-  gravityScale: 2
-  runSpeed: 400
-  airRunSpeed: 300
-  m_AmountOfTimeInGhostForm: 2
+  gravityScale: 9
+  m_Velocity: {x: 0, y: 0, z: 0}
+  runSpeed: 600
+  airRunSpeed: 600
+  upVelocityLimit: 150
+  m_AmountOfTimeInGhostForm: 8
   m_TimeLeftInGhostForm: 0
+  m_isInGhostForm: 0
+  shiftAmountWhenHitTrigger: 0.5
   currentGhostState: 0
-  floatGhostRunSpeed: 200
-  m_FloatGhostJumpForce: 100
-  floatGhostGravity: 1
-  speedGhostRunSpeed: 500
-  m_SpeedGhostJumpForce: 400
-  speedGhostGravity: 2
-  heavyGhostRunSpeed: 200
-  m_HeavyGhostJumpForce: 200
+  floatGhostRunSpeed: 600
+  m_FloatGhostJumpForce: 600
+  floatGhostGravity: 3
+  speedGhostRunSpeed: 1000
+  m_SpeedGhostJumpForce: 1000
+  speedGhostGravity: 6
+  heavyGhostRunSpeed: 600
+  m_HeavyGhostJumpForce: 600
   heavyGhostGravity: 1
   deadBodySpritePrefab: {fileID: 3229816144785757416, guid: 8edee2b41e751a5499174e4d4d75a96b, type: 3}
   OnLandEvent:
