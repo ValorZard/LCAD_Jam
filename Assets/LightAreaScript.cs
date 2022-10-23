@@ -22,7 +22,7 @@ public class LightAreaScript : MonoBehaviour
         if (col.TryGetComponent(out CharacterController2D playerRef))
         {
             //playerRef.m_TimeLeftInGhostForm = 0.0f;
-            playerRef.TurnBackIntoHuman();
+            playerRef.RewindBackToDeadBody();
         }
     }
 }

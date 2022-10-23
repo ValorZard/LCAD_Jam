@@ -58,7 +58,7 @@ public class CharacterController2D : MonoBehaviour
     //public float heavyGhostGravity = 1.0f;
 
 
-    //private Vector3 rewindPosition; // position where the ghost died
+    private Vector3 rewindPosition; // position where the ghost died
 
     // jank way to ignore physics objects that are either human or ghost
     private Vector3 lastPosition;
@@ -92,8 +92,8 @@ public class CharacterController2D : MonoBehaviour
     void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
-        //deadBodySprite = Instantiate<SpriteRenderer>(deadBodySpritePrefab);
-        //deadBodySprite.gameObject.SetActive(false);
+        deadBodySprite = Instantiate<SpriteRenderer>(deadBodySpritePrefab);
+        deadBodySprite.gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -179,7 +179,7 @@ public class CharacterController2D : MonoBehaviour
                     //break;
             }
 
-            /*
+            
             // rewind time + sprite
             rewindPosition = GetComponent<Transform>().position;
             // collision stuff (shift the player by a bit)
@@ -191,14 +191,10 @@ public class CharacterController2D : MonoBehaviour
             {
                 rewindPosition = new Vector2(rewindPosition.x + shiftAmountWhenHitTrigger, rewindPosition.y);
             }
-
-            if (currentGhostState != GhostState.Heavy)
-            {
-                deadBodySprite.gameObject.SetActive(true);
-                deadBodySprite.GetComponent<Transform>().position = rewindPosition;
-                Debug.Log("Spawn Dead Body");
-            }
-            */
+            
+            deadBodySprite.gameObject.SetActive(true);
+            deadBodySprite.GetComponent<Transform>().position = rewindPosition;
+            Debug.Log("Spawn Dead Body");
         }
     }
 
@@ -206,6 +202,24 @@ public class CharacterController2D : MonoBehaviour
     {
         m_isInGhostForm = false;
         sprite.color = humanColor;
+    }
+
+    public void RewindBackToDeadBody()
+    {
+        m_isInGhostForm = false;
+        // Change the 'color' property of the 'Sprite Renderer' back to human
+        sprite.color = new Color(255, 255, 255, 1);
+        m_Rigidbody2D.gravityScale = gravityScale;
+        Debug.Log("Back to Human.");
+
+        // rewind time + sprite
+        GetComponent<Transform>().position = rewindPosition;
+        Debug.Log("Rewind Time.");
+        deadBodySprite.gameObject.SetActive(false);
+
+        m_Rigidbody2D.velocity = Vector2.zero;
+
+        TurnBackIntoHuman();
     }
 
     public void Move(float move, bool jump)
