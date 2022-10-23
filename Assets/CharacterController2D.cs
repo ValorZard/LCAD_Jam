@@ -58,7 +58,7 @@ public class CharacterController2D : MonoBehaviour
     //public float heavyGhostGravity = 1.0f;
 
 
-    private Vector3 rewindPosition; // position where the ghost died
+    //private Vector3 rewindPosition; // position where the ghost died
 
     // jank way to ignore physics objects that are either human or ghost
     private Vector3 lastPosition;
@@ -181,7 +181,7 @@ public class CharacterController2D : MonoBehaviour
 
             
             // rewind time + sprite
-            rewindPosition = GetComponent<Transform>().position;
+            Vector3 rewindPosition = GetComponent<Transform>().position;
             // collision stuff (shift the player by a bit)
             if (m_FacingRight)
             {
@@ -202,6 +202,9 @@ public class CharacterController2D : MonoBehaviour
     {
         m_isInGhostForm = false;
         sprite.color = humanColor;
+
+        //remove dead body cuz your human again
+        deadBodySprite.gameObject.SetActive(false);
     }
 
     public void RewindBackToDeadBody()
@@ -210,14 +213,13 @@ public class CharacterController2D : MonoBehaviour
         {
             m_isInGhostForm = false;
             // Change the 'color' property of the 'Sprite Renderer' back to human
-            sprite.color = new Color(255, 255, 255, 1);
+            sprite.color = humanColor;
             m_Rigidbody2D.gravityScale = gravityScale;
             Debug.Log("Back to Human.");
 
             // rewind time + sprite
-            GetComponent<Transform>().position = rewindPosition;
+            GetComponent<Transform>().position = deadBodySprite.transform.position;
             Debug.Log("Rewind Time.");
-            deadBodySprite.gameObject.SetActive(false);
 
             m_Rigidbody2D.velocity = Vector2.zero;
 
