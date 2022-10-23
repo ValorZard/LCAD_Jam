@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DaggerScript : MonoBehaviour
 {
+    public Vector3 velocity = Vector3.zero;
     // Start is called before the first frame update
     void Start()
     {
@@ -11,9 +12,9 @@ public class DaggerScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        transform.position = transform.position + (velocity * Time.deltaTime);
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -24,5 +25,7 @@ public class DaggerScript : MonoBehaviour
             playerRef.currentGhostState = CharacterController2D.GhostState.Speed;
             playerRef.GoGhost();
         }
+        print(col.gameObject.name);
+        Destroy(gameObject);
     }
 }
