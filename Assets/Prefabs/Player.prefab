@@ -126,7 +126,7 @@ MonoBehaviour:
   runSpeed: 600
   airRunSpeed: 600
   upVelocityLimit: 150
-  m_AmountOfTimeInGhostForm: 8
+  m_AmountOfTimeInGhostForm: 6
   m_TimeLeftInGhostForm: 0
   m_isInGhostForm: 0
   shiftAmountWhenHitTrigger: 0.5
