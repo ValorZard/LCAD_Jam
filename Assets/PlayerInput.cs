@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -35,6 +36,12 @@ public class PlayerInput : MonoBehaviour
 		controller.Move(horizontalMove * Time.fixedDeltaTime, jump);
 		// jump = false;
 
+		// pretend that this is the restart button
+		if (Input.GetButtonDown("Fire3"))
+        {
+			Scene scene = SceneManager.GetActiveScene(); 
+			SceneManager.LoadScene(scene.name);
+		}
 	}
 
 	void FixedUpdate()
