@@ -16,10 +16,10 @@ public class PlayerInput : MonoBehaviour
 	{
 
 		// pretend that this is the "Go Ghost" button
-		if (Input.GetButtonDown("Fire1"))
-		{
-			controller.GoGhost();
-		}
+		//if (Input.GetButtonDown("Fire1"))
+		//{
+		//	controller.GoGhost();
+		//}
 
 		// Move our character
 		horizontalMove = Input.GetAxisRaw("Horizontal");
